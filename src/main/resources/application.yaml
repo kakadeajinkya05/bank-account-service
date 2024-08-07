@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: bank-account-service
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:banking
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+    defer-datasource-initialization: true
+  lifecycle:
+    timeout-per-shutdown-phase: 30
+
+server:
+  shutdown: GRACEFUL
+
+auditing:
+  cron-expression: "* * * * * *"
+  max-transaction: 1000
+
+transaction:
+  scheduler:
+    pool-size: 2
+  credit:
+    transaction-no: 25
+    initial-delay: 5
+    period: 1
+  debit:
+    transaction-no: 25
+    initial-delay: 5
+    period: 1
+
+
